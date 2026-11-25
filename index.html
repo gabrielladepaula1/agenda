@@ -8,31 +8,29 @@
 :root {
   --bg: #f6f5f1; --surface: #ffffff; --text: #1f1e1a; --muted: #6d6a60;
   --border: #e3e0d6; --accent: #2f6f5e; --accent-soft: #e3f0ec;
-  --gab: #b5476b; --gab-soft: #f8e4eb; --vin: #2e5c9a; --vin-soft: #e2ecf8;
-  --warn: #9a6a12; --warn-soft: #fbf1d9; --noturno: #3b3f7a; --diurno: #c27a1a; --ufcat: #3d7a4a;
+  --gab: #b5476b; --vin: #2e5c9a; --warn: #9a6a12; --warn-soft: #fbf1d9;
+  --noturno: #3b3f7a; --diurno: #c27a1a; --ufcat: #3d7a4a;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #161714; --surface: #1f201c; --text: #ecebe5; --muted: #9c9a90;
     --border: #34352f; --accent: #7fc2ae; --accent-soft: #223a33;
-    --gab: #e58aa6; --gab-soft: #3a2630; --vin: #7aa8e6; --vin-soft: #22304a;
-    --warn: #e2b55a; --warn-soft: #3a3019;
+    --gab: #e58aa6; --vin: #7aa8e6; --warn: #e2b55a; --warn-soft: #3a3019;
     color-scheme: dark;
   }
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.5; }
 header { padding: calc(28px + env(safe-area-inset-top, 0px)) 20px 24px; background: linear-gradient(135deg, var(--accent-soft), var(--surface)); border-bottom: 1px solid var(--border); }
-header .wrap { max-width: 980px; margin: 0 auto; }
+header .wrap, main { max-width: 1040px; margin: 0 auto; }
 h1 { font-size: 26px; margin: 0 0 6px; }
 .sub { color: var(--muted); margin: 0; font-size: 15px; }
-main { max-width: 980px; margin: 0 auto; padding: 20px; }
+main { padding: 20px; }
 section { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 20px; }
 h2 { font-size: 19px; margin: 0 0 4px; }
-h3 { font-size: 16px; margin: 18px 0 8px; }
 .hint { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
 .card { border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
 .card.gab { border-top: 4px solid var(--gab); }
 .card.vin { border-top: 4px solid var(--vin); }
@@ -40,40 +38,35 @@ h3 { font-size: 16px; margin: 18px 0 8px; }
 .card .big { font-size: 28px; font-weight: 700; margin: 6px 0 0; }
 .card .small { color: var(--muted); font-size: 13px; }
 .barra { height: 10px; background: var(--border); border-radius: 999px; overflow: hidden; margin: 10px 0 4px; }
-.barra > div { height: 100%; background: var(--accent); }
-.gab .barra > div { background: var(--gab); }
-.vin .barra > div { background: var(--vin); }
-nav.abas { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
-nav.abas button { padding: 9px 16px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg); color: var(--text); cursor: pointer; font-size: 15px; }
-nav.abas button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-.painel { display: none; }
-.painel.ativo { display: block; }
-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
-tr.previsao td { color: var(--muted); }
+.barra > div { height: 100%; background: var(--gab); }
+.card.vin .barra > div { background: var(--vin); }
+.legenda { display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: 14px; }
+.legenda span.item { display: inline-flex; align-items: center; gap: 6px; }
 .tag { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; }
 .tag.N { background: var(--noturno); }
 .tag.D { background: var(--diurno); }
 .tag.U { background: var(--ufcat); }
-.setor { display: inline-block; padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); font-size: 13px; }
-.prev { display: inline-block; padding: 2px 8px; border-radius: 6px; background: var(--warn-soft); color: var(--warn); font-size: 12px; font-weight: 600; }
-.legenda { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
-.legenda .item { border: 1px solid var(--border); border-radius: 10px; padding: 12px; font-size: 14px; }
-.legenda .item strong { display: block; margin-bottom: 4px; }
-.juntos { display: grid; gap: 10px; }
-.par { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; display: grid; grid-template-columns: 110px 1fr; gap: 6px 14px; align-items: center; }
-.par .data { font-weight: 700; }
-.par .ok { color: var(--accent); font-weight: 700; font-size: 13px; }
-.par .meio { color: var(--muted); font-size: 13px; }
-.par.sobrep { background: var(--accent-soft); border-color: var(--accent); }
-.dica { background: var(--warn-soft); color: var(--text); border-radius: 10px; padding: 12px 14px; font-size: 14px; margin-top: 14px; }
-.dica strong { color: var(--warn); }
-footer { color: var(--muted); font-size: 13px; text-align: center; padding: 10px 20px calc(30px + env(safe-area-inset-bottom, 0px)); }
 .scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+th.gab { color: var(--gab); }
+th.vin { color: var(--vin); }
+td.data { white-space: nowrap; width: 120px; }
+td.data .dia { color: var(--muted); font-size: 13px; }
+tr.juntos td { background: var(--accent-soft); }
+tr.juntos td.data::after { content: "juntos"; display: inline-block; margin-top: 4px; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; }
+tr.previsao td.cel { opacity: .85; }
+.turno { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.horario { color: var(--muted); font-size: 13px; }
+.setor { margin-top: 4px; font-size: 13px; }
+.prev { display: inline-block; margin-top: 4px; padding: 1px 8px; border-radius: 6px; background: var(--warn-soft); color: var(--warn); font-size: 12px; font-weight: 600; }
+.vazio { color: var(--muted); }
+.nota { background: var(--warn-soft); border-radius: 10px; padding: 12px 14px; font-size: 14px; margin-top: 14px; }
+footer { color: var(--muted); font-size: 13px; text-align: center; padding: 10px 20px calc(30px + env(safe-area-inset-bottom, 0px)); }
 @media (max-width: 560px) {
-  .par { grid-template-columns: 1fr; }
   th, td { padding: 7px 5px; font-size: 13px; }
+  td.data { width: 90px; }
 }
 </style>
 </head>
@@ -89,225 +82,137 @@ footer { color: var(--muted); font-size: 13px; text-align: center; padding: 10px
 
 <section>
   <h2>Resumo</h2>
-  <p class="hint">Cada pessoa precisa completar 160 horas. Veja quanto já está na escala.</p>
+  <p class="hint">Cada pessoa precisa completar 160 horas.</p>
   <div class="cards" id="resumo"></div>
 </section>
 
 <section>
-  <h2>Antes de ver as tabelas: como ler</h2>
-  <p class="hint">Três tipos de turno e quatro setores aparecem na escala.</p>
-  <div class="legenda">
-    <div class="item"><strong><span class="tag D">Diurno</span> 12 horas</strong>Das 07h às 19h. É o plantão do dia.</div>
-    <div class="item"><strong><span class="tag N">Noturno</span> 12 horas</strong>Das 19h às 07h do dia seguinte. Começa à noite e termina de manhã.</div>
-    <div class="item"><strong><span class="tag U">UFCAT</span> 8 horas</strong>Das 07h às 15h. É a atividade da universidade, mais curta.</div>
+  <h2>Agenda lado a lado</h2>
+  <p class="hint">Cada linha é um dia. Em cada coluna aparecem o turno, o horário e o setor do plantão. Linhas destacadas mostram os dias em que vocês estão no hospital ao mesmo tempo.</p>
+  <div class="legenda" style="margin-bottom:14px">
+    <span class="item"><span class="tag D">Diurno</span> 07h–19h, 12h</span>
+    <span class="item"><span class="tag N">Noturno</span> 19h–07h, 12h</span>
+    <span class="item"><span class="tag U">UFCAT</span> 07h–15h, 8h</span>
   </div>
-  <h3>Setores</h3>
-  <div class="legenda">
-    <div class="item"><strong>PS Obstétrico</strong>Pronto-socorro da obstetrícia. Atende urgências de gestantes e puérperas.</div>
-    <div class="item"><strong>Triagem PS Obstétrico</strong>Primeira avaliação de quem chega. Define a ordem e a urgência do atendimento.</div>
-    <div class="item"><strong>Enfermaria Obstétrica</strong>Internação de gestantes e puérperas que precisam de observação ou tratamento.</div>
-    <div class="item"><strong>Enfermaria Ginecológica</strong>Internação de pacientes ginecológicas, fora da gestação.</div>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Data</th><th class="gab">Gabriella</th><th class="vin">Vinícius</th></tr></thead>
+      <tbody id="linhas"></tbody>
+    </table>
   </div>
-  <p class="hint" style="margin-top:14px">Previsão: plantões de janeiro de 2027, ainda sujeitos à confirmação da Santa Casa.</p>
-</section>
-
-<section>
-  <nav class="abas" role="tablist">
-    <button type="button" role="tab" data-aba="gab" aria-selected="true">Gabriella</button>
-    <button type="button" role="tab" data-aba="vin" aria-selected="false">Vinícius</button>
-    <button type="button" role="tab" data-aba="juntos" aria-selected="false">Juntos</button>
-  </nav>
-
-  <div class="painel ativo" id="painel-gab">
-    <h2>Agenda da Gabriella</h2>
-    <p class="hint">Todos os plantões, com turno, horário e setor.</p>
-    <div class="scroll"><table id="tab-gab"></table></div>
-  </div>
-
-  <div class="painel" id="painel-vin">
-    <h2>Agenda do Vinícius</h2>
-    <p class="hint">Todos os plantões, com turno, horário e setor.</p>
-    <div class="scroll"><table id="tab-vin"></table></div>
-  </div>
-
-  <div class="painel" id="painel-juntos">
-    <h2>Os dois juntos</h2>
-    <p class="hint">Dias em que vocês dois têm plantão. Os destacados são os que se sobrepõem no horário, ou seja, quando estão no hospital ao mesmo tempo.</p>
-    <div class="juntos" id="lista-juntos"></div>
-    <div class="dica" id="dica-juntos"></div>
-  </div>
+  <div class="nota">Setores: <strong>PS Obstétrico</strong> (pronto-socorro), <strong>Triagem PS Obstétrico</strong> (classificação de risco na chegada), <strong>Enfermaria Obstétrica</strong> (internação de gestantes e puérperas) e <strong>Enfermaria Ginecológica</strong> (internação ginecológica). <em>Previsão</em> são os plantões de janeiro de 2027, ainda sujeitos à confirmação.</div>
 </section>
 
 </main>
 
 <footer>
-  Fonte: escala GO da Santa Casa de Catalão (UFCAT), arquivo v3_1 alunos. Os setores foram lidos pela posição de cada nome na tabela do PDF. Em caso de dúvida, confira no documento original.
+  Fonte: escala GO da Santa Casa de Catalão (UFCAT), arquivo v3_1 alunos. Os setores foram lidos pela posição de cada nome no PDF. Em caso de dúvida, confira no documento original.
 </footer>
 
 <script>
-// T = turno: D diurno (07–19), N noturno (19–07), U UFCAT (07–15)
-// p = previsão (ainda não confirmada)
-const DADOS = {
-  gab: [
-    { d: "25/11/2026", w: "Quarta",   t: "N", s: "Enfermaria Ginecológica" },
-    { d: "27/11/2026", w: "Sexta",    t: "N", s: "PS Obstétrico" },
-    { d: "29/11/2026", w: "Domingo",  t: "D", s: "Enfermaria Obstétrica" },
-    { d: "02/12/2026", w: "Quarta",   t: "D", s: "Triagem PS Obstétrico" },
-    { d: "04/12/2026", w: "Sexta",    t: "U", s: "Enfermaria Obstétrica" },
-    { d: "05/12/2026", w: "Sábado",   t: "U", s: "Enfermaria Obstétrica" },
-    { d: "07/12/2026", w: "Segunda",  t: "N", s: "Triagem PS Obstétrico" },
-    { d: "09/12/2026", w: "Quarta",   t: "D", s: "Enfermaria Obstétrica" },
-    { d: "11/12/2026", w: "Sexta",    t: "U", s: "Enfermaria Ginecológica" },
-    { d: "14/12/2026", w: "Segunda",  t: "N", s: "PS Obstétrico" },
-    { d: "16/12/2026", w: "Quarta",   t: "D", s: "Triagem PS Obstétrico" },
-    { d: "18/12/2026", w: "Sexta",    t: "U", s: "PS Obstétrico" },
-    { d: "06/01/2027", w: "Quarta",   t: "D", s: "Enfermaria Ginecológica", p: true },
-    { d: "09/01/2027", w: "Sábado",   t: "D", s: "Triagem PS Obstétrico", p: true },
-    { d: "10/01/2027", w: "Domingo",  t: "U", s: "PS Obstétrico", p: true }
-  ],
-  vin: [
-    { d: "25/11/2026", w: "Quarta",   t: "U", s: "Enfermaria Obstétrica" },
-    { d: "27/11/2026", w: "Sexta",    t: "D", s: "Triagem PS Obstétrico" },
-    { d: "28/11/2026", w: "Sábado",   t: "U", s: "Triagem PS Obstétrico" },
-    { d: "30/11/2026", w: "Segunda",  t: "N", s: "Enfermaria Ginecológica" },
-    { d: "02/12/2026", w: "Quarta",   t: "D", s: "Enfermaria Obstétrica" },
-    { d: "04/12/2026", w: "Sexta",    t: "N", s: "Triagem PS Obstétrico" },
-    { d: "09/12/2026", w: "Quarta",   t: "D", s: "PS Obstétrico" },
-    { d: "11/12/2026", w: "Sexta",    t: "U", s: "Enfermaria Obstétrica" },
-    { d: "12/12/2026", w: "Sábado",   t: "N", s: "Enfermaria Obstétrica" },
-    { d: "16/12/2026", w: "Quarta",   t: "D", s: "PS Obstétrico" },
-    { d: "18/12/2026", w: "Sexta",    t: "U", s: "Enfermaria Ginecológica" },
-    { d: "06/01/2027", w: "Quarta",   t: "D", s: "PS Obstétrico", p: true },
-    { d: "08/01/2027", w: "Sexta",    t: "U", s: "PS Obstétrico", p: true },
-    { d: "09/01/2027", w: "Sábado",   t: "D", s: "Enfermaria Obstétrica", p: true },
-    { d: "11/01/2027", w: "Segunda",  t: "N", s: "Enfermaria Ginecológica", p: true }
-  ]
-};
+// t: D diurno (07–19), N noturno (19–07), U UFCAT (07–15). p: previsão
+const GAB = [
+  { d: "25/11/2026", w: "Quarta",  t: "N", s: "Enfermaria Ginecológica" },
+  { d: "27/11/2026", w: "Sexta",   t: "N", s: "PS Obstétrico" },
+  { d: "29/11/2026", w: "Domingo", t: "D", s: "Enfermaria Obstétrica" },
+  { d: "02/12/2026", w: "Quarta",  t: "D", s: "Triagem PS Obstétrico" },
+  { d: "04/12/2026", w: "Sexta",   t: "U", s: "Enfermaria Obstétrica" },
+  { d: "05/12/2026", w: "Sábado",  t: "U", s: "Enfermaria Obstétrica" },
+  { d: "07/12/2026", w: "Segunda", t: "N", s: "Triagem PS Obstétrico" },
+  { d: "09/12/2026", w: "Quarta",  t: "D", s: "Enfermaria Obstétrica" },
+  { d: "11/12/2026", w: "Sexta",   t: "U", s: "Enfermaria Ginecológica" },
+  { d: "14/12/2026", w: "Segunda", t: "N", s: "PS Obstétrico" },
+  { d: "16/12/2026", w: "Quarta",  t: "D", s: "Triagem PS Obstétrico" },
+  { d: "18/12/2026", w: "Sexta",   t: "U", s: "PS Obstétrico" },
+  { d: "06/01/2027", w: "Quarta",  t: "D", s: "Enfermaria Ginecológica", p: true },
+  { d: "09/01/2027", w: "Sábado",  t: "D", s: "Triagem PS Obstétrico", p: true },
+  { d: "10/01/2027", w: "Domingo", t: "U", s: "PS Obstétrico", p: true }
+];
+const VIN = [
+  { d: "25/11/2026", w: "Quarta",  t: "U", s: "Enfermaria Obstétrica" },
+  { d: "27/11/2026", w: "Sexta",   t: "D", s: "Triagem PS Obstétrico" },
+  { d: "28/11/2026", w: "Sábado",  t: "U", s: "Triagem PS Obstétrico" },
+  { d: "30/11/2026", w: "Segunda", t: "N", s: "Enfermaria Ginecológica" },
+  { d: "02/12/2026", w: "Quarta",  t: "D", s: "Enfermaria Obstétrica" },
+  { d: "04/12/2026", w: "Sexta",   t: "N", s: "Triagem PS Obstétrico" },
+  { d: "09/12/2026", w: "Quarta",  t: "D", s: "PS Obstétrico" },
+  { d: "11/12/2026", w: "Sexta",   t: "U", s: "Enfermaria Obstétrica" },
+  { d: "12/12/2026", w: "Sábado",  t: "N", s: "Enfermaria Obstétrica" },
+  { d: "16/12/2026", w: "Quarta",  t: "D", s: "PS Obstétrico" },
+  { d: "18/12/2026", w: "Sexta",   t: "U", s: "Enfermaria Ginecológica" },
+  { d: "06/01/2027", w: "Quarta",  t: "D", s: "PS Obstétrico", p: true },
+  { d: "08/01/2027", w: "Sexta",   t: "U", s: "PS Obstétrico", p: true },
+  { d: "09/01/2027", w: "Sábado",  t: "D", s: "Enfermaria Obstétrica", p: true },
+  { d: "11/01/2027", w: "Segunda", t: "N", s: "Enfermaria Ginecológica", p: true }
+];
 
 const TURNO = {
-  D: { nome: "Diurno", horas: 12, ini: 7,  fim: 19 },
+  D: { nome: "Diurno",  horas: 12, ini: 7,  fim: 19 },
   N: { nome: "Noturno", horas: 12, ini: 19, fim: 31 },
-  U: { nome: "UFCAT",  horas: 8,  ini: 7,  fim: 15 }
+  U: { nome: "UFCAT",   horas: 8,  ini: 7,  fim: 15 }
 };
 
-// Converte um plantão em intervalo absoluto (em minutos), para checar sobreposição
 function intervalo(sh) {
   const [dd, mm, aa] = sh.d.split("/").map(Number);
   const base = Date.UTC(aa, mm - 1, dd) / 60000;
   const t = TURNO[sh.t];
   return { ini: base + t.ini * 60, fim: base + t.fim * 60 };
 }
-
-function totalHoras(lista) {
-  return lista.reduce((soma, sh) => soma + TURNO[sh.t].horas, 0);
+function sobrepoe(a, b) {
+  const ia = intervalo(a), ib = intervalo(b);
+  return ia.ini < ib.fim && ib.ini < ia.fim;
 }
-
-function contagem(lista) {
-  return {
-    N: lista.filter(x => x.t === "N").length,
-    D: lista.filter(x => x.t === "D").length,
-    U: lista.filter(x => x.t === "U").length
-  };
+function chaveData(d) {
+  const [dd, mm, aa] = d.split("/").map(Number);
+  return Date.UTC(aa, mm - 1, dd);
 }
-
-function tagTurno(t) {
-  return `<span class="tag ${t}">${TURNO[t].nome} · ${TURNO[t].horas}h</span>`;
+function horas(lista) { return lista.reduce((s, x) => s + TURNO[x.t].horas, 0); }
+function contar(lista) {
+  return { D: lista.filter(x => x.t === "D").length, N: lista.filter(x => x.t === "N").length, U: lista.filter(x => x.t === "U").length };
 }
-
-function horario(t) {
+function horarioTxt(t) {
   return `${String(TURNO[t].ini).padStart(2, "0")}h–${String(TURNO[t].fim % 24).padStart(2, "0")}h`;
 }
-
-function tabela(lista) {
-  const linhas = lista.map(sh => `
-    <tr class="${sh.p ? "previsao" : ""}">
-      <td><strong>${sh.d}</strong><br><span class="hint" style="margin:0">${sh.w}</span></td>
-      <td>${tagTurno(sh.t)}</td>
-      <td>${horario(sh.t)}</td>
-      <td><span class="setor">${sh.s}</span></td>
-      <td>${sh.p ? '<span class="prev">previsão</span>' : ""}</td>
-    </tr>`).join("");
-  return `<thead><tr><th>Data</th><th>Turno</th><th>Horário</th><th>Setor</th><th></th></tr></thead><tbody>${linhas}</tbody>`;
+function celula(sh) {
+  if (!sh) return '<span class="vazio">—</span>';
+  return `
+    <div class="turno"><span class="tag ${sh.t}">${TURNO[sh.t].nome} · ${TURNO[sh.t].horas}h</span><span class="horario">${horarioTxt(sh.t)}</span></div>
+    <div class="setor">${sh.s}</div>
+    ${sh.p ? '<span class="prev">previsão</span>' : ""}`;
 }
 
 function resumo() {
-  const alvo = 160;
   const card = (classe, nome, lista) => {
-    const h = totalHoras(lista);
-    const c = contagem(lista);
-    const pct = Math.min(100, Math.round(h / alvo * 100));
-    return `
-      <div class="card ${classe}">
-        <div class="nome">${nome}</div>
-        <div class="big">${h} h</div>
-        <div class="small">de ${alvo} h · ${lista.length} plantões</div>
-        <div class="barra"><div style="width:${pct}%"></div></div>
-        <div class="small">${c.D} diurnos · ${c.N} noturnos · ${c.U} UFCAT</div>
-      </div>`;
+    const h = horas(lista), c = contar(lista), pct = Math.min(100, Math.round(h / 160 * 100));
+    return `<div class="card ${classe}">
+      <div class="nome">${nome}</div>
+      <div class="big">${h} h</div>
+      <div class="small">de 160 h · ${lista.length} plantões</div>
+      <div class="barra"><div style="width:${pct}%"></div></div>
+      <div class="small">${c.D} diurnos · ${c.N} noturnos · ${c.U} UFCAT</div>
+    </div>`;
   };
-  document.getElementById("resumo").innerHTML =
-    card("gab", "Gabriella", DADOS.gab) + card("vin", "Vinícius", DADOS.vin);
+  document.getElementById("resumo").innerHTML = card("gab", "Gabriella", GAB) + card("vin", "Vinícius", VIN);
 }
 
-function juntos() {
-  const pares = [];
-  const pessoas = { gab: DADOS.gab, vin: DADOS.vin };
-  const mesmoDia = [];
-  DADOS.gab.forEach(g => {
-    DADOS.vin.forEach(v => {
-      if (g.d === v.d) {
-        const ig = intervalo(g), iv = intervalo(v);
-        const sobrep = ig.ini < iv.fim && iv.ini < ig.fim;
-        pares.push({ data: g.d, w: g.w, g, v, sobrep });
-      }
-    });
-  });
-  pares.sort((a, b) => {
-    const [da, ma, aa] = a.data.split("/").map(Number);
-    const [db, mb, ab] = b.data.split("/").map(Number);
-    return Date.UTC(aa, ma - 1, da) - Date.UTC(ab, mb - 1, db);
-  });
-  const sobrepostos = pares.filter(p => p.sobrep);
-  const lista = document.getElementById("lista-juntos");
-  if (!pares.length) {
-    lista.innerHTML = '<p class="hint">Nenhum dia em comum.</p>';
-  } else {
-    lista.innerHTML = pares.map(p => `
-      <div class="par ${p.sobrep ? "sobrep" : ""}">
-        <div class="data">${p.data}<br><span class="hint" style="margin:0">${p.w}</span></div>
-        <div>
-          <div><strong>Gabriella:</strong> ${tagTurno(p.g.t)} · <span class="setor">${p.g.s}</span></div>
-          <div style="margin-top:4px"><strong>Vinícius:</strong> ${tagTurno(p.v.t)} · <span class="setor">${p.v.s}</span></div>
-        </div>
-        <div style="grid-column: 1 / -1">
-          ${p.sobrep
-            ? '<span class="ok">✔ Estão no hospital ao mesmo tempo nesse plantão</span>'
-            : '<span class="meio">Mesmo dia, mas em horários que não se encontram</span>'}
-        </div>
-      </div>`).join("");
-  }
-  document.getElementById("dica-juntos").innerHTML =
-    `<strong>Resumo do encontro:</strong> vocês têm plantão no mesmo dia em ${pares.length} datas, e em ${sobrepostos.length} delas estão no hospital ao mesmo tempo. ` +
-    `Nas outras, um começa quando o outro termina, o que pode servir para combinar a troca de horário ou o almoço.`;
+function linhas() {
+  const datas = [...new Set([...GAB.map(x => x.d), ...VIN.map(x => x.d)])]
+    .sort((a, b) => chaveData(a) - chaveData(b));
+  document.getElementById("linhas").innerHTML = datas.map(d => {
+    const g = GAB.find(x => x.d === d), v = VIN.find(x => x.d === d);
+    const juntos = g && v && sobrepoe(g, v);
+    const dia = (g || v).w;
+    const classes = [juntos ? "juntos" : "", (g && g.p) || (v && v.p) ? "previsao" : ""].join(" ").trim();
+    return `<tr class="${classes}">
+      <td class="data"><strong>${d}</strong><div class="dia">${dia}</div></td>
+      <td class="cel">${celula(g)}</td>
+      <td class="cel">${celula(v)}</td>
+    </tr>`;
+  }).join("");
 }
 
-function render() {
-  resumo();
-  document.getElementById("tab-gab").innerHTML = tabela(DADOS.gab);
-  document.getElementById("tab-vin").innerHTML = tabela(DADOS.vin);
-  juntos();
-}
-
-document.querySelectorAll("nav.abas button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll("nav.abas button").forEach(b => b.setAttribute("aria-selected", "false"));
-    btn.setAttribute("aria-selected", "true");
-    document.querySelectorAll(".painel").forEach(p => p.classList.remove("ativo"));
-    document.getElementById("painel-" + btn.dataset.aba).classList.add("ativo");
-  });
-});
-
-render();
+resumo();
+linhas();
 </script>
 </body>
 </html>
